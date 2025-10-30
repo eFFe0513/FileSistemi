@@ -13,11 +13,13 @@ public class CalcolatriceClient {
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              Scanner scanner = new Scanner(System.in)) {
 
+            // Stampa indicazioni per l'utente
             System.out.println("CALCOLATRICE REMOTA");
             System.out.println("Formato: NUMERO OPERAZIONE NUMERO");
             System.out.println("Operazioni supportate: + - * /");
             System.out.println("Scrivi 'quit' per uscire.");
 
+            // Si occupa dell'invio e del collegamento con il server
             String input;
             while (true) {
                 System.out.print("Calcolo> ");
@@ -40,3 +42,4 @@ public class CalcolatriceClient {
         }
     }
 }
+
