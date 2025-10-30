@@ -1,7 +1,3 @@
-/**
- * from network/..
- * javac network/TcpServer.java; java network.TcpServer 
- */
 package network;
 
 import java.io.DataInputStream;
@@ -11,7 +7,7 @@ import java.net.Socket;
 
 public class TcpServer {
 	public static void main(String[] args) throws Exception {
-		
+		//Selezione della porta 2230
 		int severPort=2230;
 		String clientMsg = "";
 		
@@ -23,7 +19,7 @@ public class TcpServer {
 			// Attesa della connessione con il client
 			Socket clientSocket = serverSocket.accept();
 			
-			// Create input and output streams to read/write data
+			// Crea input e output streams 
 			DataInputStream inStream = new DataInputStream(clientSocket.getInputStream());
 			DataOutputStream outStream = new DataOutputStream(clientSocket.getOutputStream());	
 
@@ -64,7 +60,7 @@ public class TcpServer {
 				System.out.println("Server: invio messaggio " + response);
 			}
 
-			// Close resources
+			// Chiusura risorse
 			serverSocket.close();
 			clientSocket.close();
 			inStream.close();
