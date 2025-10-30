@@ -1,7 +1,3 @@
-/**
- * from network/..
- * javac network/TcpClient.java java network.TcpClient 
- */
 package network;
 
 import java.io.DataInputStream;
@@ -9,59 +5,54 @@ import java.io.DataOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
-//import java.util.Scanner;
 
 public class TcpClient {
 	public static void main(String[] args) throws Exception {
 		
 		String severAddress="127.0.0.1";  // localhost
-		int severPort=2230;
+		int severPort=2230; // Selezione porta 2230
 		String clientMsg = "";
 		String serverMsg = "";
 		
 		try {
-			// Create connection to server socket
+			// Creazione della connessione tra server e socket
 			System.out.print("Client: Connessione al server=" + severAddress + ":" + severPort + " ... ");
 			Socket socket = new Socket(severAddress, severPort); 
 			System.out.println("Connected");
 
-			// Create input and output streams to read/write data
-			// Input stream tramite la classe java Scanner per i dati inseriti dall'utente 
+			// Crea input e output streams
 			BufferedReader inUserStream = new BufferedReader(new InputStreamReader(System.in));
-			//Scanner scanner = new Scanner(System.in);
 			// Input stream per i dati provenienti dal socket 
 			DataInputStream inSocketStream = new DataInputStream(socket.getInputStream());
 			// Output stream 
 			DataOutputStream outSocketStream = new DataOutputStream(socket.getOutputStream());
 			
 			while (!clientMsg.equals("quit")) {
-				// Prompt user to enter some text or 'quit'
+				// Chiedi all'utente il messaggio da inserire
 				System.out.print("Client: inserisci il messaggio da inviare> ");
-				//clientMsg = scanner.nextLine();
 				clientMsg = inUserStream.readLine();
 
-				// Send the entered text to server
+				// Manda il testo inserito al server
 				System.out.println("Client: invio il messaggio: " + clientMsg);
 				outSocketStream.writeUTF(clientMsg);
 				outSocketStream.flush();
 
-				// Read data from socket input stream
+				// Leggi dati dal socket input stream
 				serverMsg = inSocketStream.readUTF();
 				System.out.println("Client: ricevuto il messaggio: " + serverMsg);
 				
-				// Check if server terminated the connection
+				// Controlla se il server ha terminato la connessione
 				if (serverMsg.equals("CONDIZIONE_RAGGIUNTA")) {
 					System.out.println("Client: Condizione raggiunta - consonanti = metà vocali");
 					break;
 				}
 			}
 
-			// Close resources
+			// Chiusura risorse
 			outSocketStream.close();
 			inSocketStream.close();
 			inUserStream.close();
-			socket.close();
-			//scanner.close();			
+			socket.close();		
 		} catch (Exception e) {
 			System.out.println(e);
 		}
