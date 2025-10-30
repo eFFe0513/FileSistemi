@@ -24,18 +24,21 @@ public class CalcolatriceServer {
                     String richiesta;
                     while ((richiesta = in.readLine()) != null) {
                         richiesta = richiesta.trim();
+                        // Controlla se l'utente ha inserito "QUIT" e se vero chiudi la connessione
                         if (richiesta.equalsIgnoreCase("QUIT")) {
                             out.println("CHIUSURA Operazioni eseguite " + contatoreOperazioni + ". Arrivederci!");
                             serverAttivo = false;
                             break;
                         }
 
+                        //Controllo della sintassi dell'input dell'utente
                         String[] parti = richiesta.split(" ");
                         if (parti.length != 3) {
                             out.println("ERRORE Formato non valido. Usa NUMERO OPERAZIONE NUMERO");
                             continue;
                         }
 
+                        //Selezione del primo e secondo numero contenuto nella string di input
                         double num1, num2;
                         try {
                             num1 = Double.parseDouble(parti[0]);
@@ -48,6 +51,7 @@ public class CalcolatriceServer {
                         String operazione = parti[1];
                         double risultato;
 
+                        // Stabilisce quale operazione eseguire
                         try {
                             switch (operazione) {
                                 case "+":
@@ -90,3 +94,4 @@ public class CalcolatriceServer {
         }
     }
 }
+
