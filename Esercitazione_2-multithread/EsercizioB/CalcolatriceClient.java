@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class CalcolatriceClient2 {
+public class CalcolatriceClient {
 
     private static final String HOST = "localhost";
     private static final int PORTA = 8844;
