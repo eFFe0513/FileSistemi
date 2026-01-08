@@ -14,7 +14,7 @@ public class Sender {
 
     public static void main(String[] args) throws IOException 
     {
-        //Create Datagram socket che si bind su porta casuale
+        //Create Datagram socket
         DatagramSocket socket = new DatagramSocket();
         
         // legge il messaggio dall'utente
